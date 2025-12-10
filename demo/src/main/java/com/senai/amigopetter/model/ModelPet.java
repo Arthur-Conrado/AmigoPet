@@ -1,67 +1,74 @@
 package com.senai.amigopetter.model;
 
-import java.beans.ConstructorProperties;
+import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
 @Entity
 @Table(name = "pet")
 @Getter
-@setter
-
+@Setter
 public class ModelPet {
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id ;
-    @Column (nullable = false, length =100)
+    private Integer id;
+
+    @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false,length=100)
+    @Column(nullable = false, length = 100)
     private String raca;
-    
-    @Column(length=20)
-    private String idade;
 
-    @Column(nullable = false,length=100)
-    private String porte;
+    @Column
+    private Integer idade;
 
-    @Column(length=100)
-    private String sexo;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PortePet porte;
 
-    @Column(nullable = false,length=100)
-    private String disponibilidade;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private SexoPet sexo;
 
-    @Column(length=100)
-    private Url foto;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private DisponibilidadePet disponibilidade;
 
-    @Column(nullable = false,length=100)
+    @Column(length = 500)
+    private String fotos;
+
+    @Column(length = 100)
     private String cor;
 
-    @Column(nullable = false,length=100)
-    private String vacinado;
+    @Column
+    private Boolean vacinado;
 
-    @Column(nullable = false,length=100)
-    private String qtd_doses;
+    @Column
+    private Integer qtd_doses;
 
-    @Column(nullable = false,length=100)
-    private String dt_registro;
+    @Column(name = "dt_registro", nullable = false, updatable = false)
+    private LocalDateTime dt_registro;
 
-    @Column(nullable = false,length=100)
-    private String castrado;
+    @Column
+    private Boolean castrado;
 
-    @Column(nullable = false,length=100)
+    @Column(length = 500)
     private String descricao;
 
-     @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_especie", nullable = false)
-    private String Especie;
-
-
+    private ModelEspecie especie;
 
 }

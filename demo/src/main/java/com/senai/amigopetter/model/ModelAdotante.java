@@ -12,8 +12,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "Adotante")
 @Getter
-@setter
-public class ModelAdotante{
+@Setter
+public class ModelAdotante {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
