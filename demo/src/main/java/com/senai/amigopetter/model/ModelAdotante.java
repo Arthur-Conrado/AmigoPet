@@ -1,5 +1,5 @@
 package com.senai.amigopetter.model;
-import java.lang.annotation.Inherited;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

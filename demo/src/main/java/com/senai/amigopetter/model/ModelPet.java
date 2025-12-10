@@ -1,7 +1,9 @@
 package com.senai.amigopetter.model;
 
 import java.time.LocalDateTime;
-
+import com.senai.amigopetter.model.PortePet;
+import com.senai.amigopetter.model.SexoPet;
+import com.senai.amigopetter.model.DisponibilidadePet;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -66,6 +68,8 @@ public class ModelPet {
 
     @Column(length = 500)
     private String descricao;
+
+    
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_especie", nullable = false)

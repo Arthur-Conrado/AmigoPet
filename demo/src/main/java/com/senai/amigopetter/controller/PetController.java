@@ -1,4 +1,5 @@
 package com.senai.amigopetter.controller;
+
 import com.senai.amigopetter.model.ModelPet;
 import com.senai.amigopetter.service.PetService;
 import org.springframework.http.HttpStatus;
@@ -7,13 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+
 @RestController
-@RequestMapping("api/pets")
+@RequestMapping("/pets") 
 public class PetController {
     private final PetService petService;
 
     public PetController(PetService petService){
-        this.petService=petService;
+        this.petService = petService;
     }
     
     @GetMapping
@@ -29,7 +31,7 @@ public class PetController {
             .orElse(ResponseEntity.notFound().build());
     }
 
-     @PostMapping
+    @PostMapping
     public ResponseEntity<?> criar(@RequestBody ModelPet pet) {
         try {
             ModelPet petSalvo = petService.salvar(pet);
@@ -63,35 +65,27 @@ public class PetController {
         }
     }
 
-     @GetMapping("/disponiveis")
+    @GetMapping("/disponiveis") 
     public ResponseEntity<List<ModelPet>> listarDisponiveis() {
         List<ModelPet> pets = petService.listarDisponiveis();
         return ResponseEntity.ok(pets);
     }
 
-    @GetMapping("/especie/{idEspecie}")
+    @GetMapping("/especie/{idEspecie}") 
     public ResponseEntity<List<ModelPet>> listarPorEspecie(@PathVariable Integer idEspecie) {
         List<ModelPet> pets = petService.listarPorEspecie(idEspecie);
         return ResponseEntity.ok(pets);
     }
 
-     @GetMapping("/buscar")
-    public ResponseEntity<List<ModelPet>> buscarPorNome(@RequestParam String nome) {
-        List<ModelPet> pets = petService.buscarPorNome(nome);
+
+    @GetMapping("/filtro")
+    public ResponseEntity<List<ModelPet>> filtrarPets(
+            @RequestParam(required = false) String porte,
+            @RequestParam(required = false) String sexo,
+            @RequestParam(required = false) String cor,
+            @RequestParam(required = false) Boolean vacinado) {
+      
+        List<ModelPet> pets = petService.filtrarPets(porte, sexo, cor, vacinado);
         return ResponseEntity.ok(pets);
     }
-
-     @PatchMapping("/{id}/adotado")
-    public ResponseEntity<ModelPet> marcarComoAdotado(@PathVariable Integer id) {
-        try {
-            ModelPet pet = petService.marcarComoAdotado(id);
-            return ResponseEntity.ok(pet);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
 }
-
-    
-
-

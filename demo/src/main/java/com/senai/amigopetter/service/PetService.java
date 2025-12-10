@@ -1,4 +1,5 @@
 package com.senai.amigopetter.service;
+import com.senai.amigopetter.model.DisponibilidadePet;
 import com.senai.amigopetter.model.ModelPet;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class PetService {
     List<ModelPet> buscarPorRaca(String raca);
     List<ModelPet> buscarPorCastrado(Boolean castrado);
     List<ModelPet> buscarPorIdadeEntre(Integer idadeMin, Integer idadeMax);
+    List<ModelPet> filtrarPets(String porte, String sexo, String cor, Boolean vacinado);
 
     ModelPet marcarComoAdotado(Integer petId);
     ModelPet atualizarDisponibilidade(Integer petId, DisponibilidadePet disponibilidade);

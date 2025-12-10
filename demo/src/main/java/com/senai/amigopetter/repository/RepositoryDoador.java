@@ -1,5 +1,6 @@
 package com.senai.amigopetter.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,9 +11,9 @@ import com.senai.amigopetter.model.ModelDoador;
 public interface RepositoryDoador extends JpaRepository<ModelDoador, Integer> {
     Optional<ModelDoador> findByCpf(String cpf);
     Optional<ModelDoador> findByEmail(String email);
-    List<ModelDoador> findByNomeContainigIgnoreCase(String nome);
-    Optional<ModelDoador> findByLoginId(String loginId);
+    List<ModelDoador> findByNomeContainingIgnoreCase(String nome);
+    Optional<ModelDoador> findByLoginId(Integer loginId);
     boolean existsByCpf(String cpf);
     boolean existsByEmail(String email);
-    boolean existsByLoginId(String loginId);
+    boolean existsByLoginId(Integer loginId);
 }
