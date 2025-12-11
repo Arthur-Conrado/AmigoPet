@@ -42,11 +42,11 @@ public class DoadorServiceImpl implements DoadorService {
         }
         
     
-        if (doador.getDtRegistro() == null) {
-            doador.setDtRegistro(LocalDateTime.now());
+        if (doador.getDt_registro() == null) {
+            doador.setDt_registro(LocalDateTime.now());
         }
-        if (doador.getDtUpdate() == null) {
-            doador.setDtUpdate(LocalDateTime.now());
+        if (doador.getDt_update() == null) {
+            doador.setDt_update(LocalDateTime.now());
         }
         
         return repositoryDoador.save(doador);
@@ -74,8 +74,8 @@ public class DoadorServiceImpl implements DoadorService {
         existente.setCpf(doador.getCpf());
         existente.setTelefone(doador.getTelefone());
         existente.setEmail(doador.getEmail());
-        existente.setDtNascimento(doador.getDtNascimento());
-        existente.setDtUpdate(LocalDateTime.now());
+        existente.setDt_nascimento(doador.getDt_nascimento());
+        existente.setDt_update(LocalDateTime.now());
         
        
         if (doador.getLogin() != null) {

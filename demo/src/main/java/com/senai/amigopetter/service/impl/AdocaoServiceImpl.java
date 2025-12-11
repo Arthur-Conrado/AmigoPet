@@ -121,7 +121,7 @@ public class AdocaoServiceImpl implements AdocaoService {
         adocao.setPet(pet);
         adocao.setDoador(doador);
         adocao.setDtAdocao(LocalDateTime.now());
-        adocao.setStatusAdocao(StatusAdocao.PENDENTE);
+        adocao.setStatusAdocao(StatusAdocao.EM_PROCESSO);
         
         return repositoryAdocao.save(adocao);
     }
@@ -131,7 +131,7 @@ public class AdocaoServiceImpl implements AdocaoService {
         ModelAdocao adocao = repositoryAdocao.findById(adocaoId)
             .orElseThrow(() -> new RuntimeException("Adoção não encontrada"));
         
-        adocao.setStatusAdocao(StatusAdocao.APROVADA);
+        adocao.setStatusAdocao(StatusAdocao.ADOTADO);
         adocao.setMotivoDoador(motivoDoador);
         
       
@@ -147,7 +147,7 @@ public class AdocaoServiceImpl implements AdocaoService {
         ModelAdocao adocao = repositoryAdocao.findById(adocaoId)
             .orElseThrow(() -> new RuntimeException("Adoção não encontrada"));
         
-        adocao.setStatusAdocao(StatusAdocao.RECUSADA);
+        adocao.setStatusAdocao(StatusAdocao.DISPONÍVEL);
         adocao.setMotivoDoador(motivoDoador);
         
         return repositoryAdocao.save(adocao);
@@ -158,7 +158,7 @@ public class AdocaoServiceImpl implements AdocaoService {
         ModelAdocao adocao = repositoryAdocao.findById(adocaoId)
             .orElseThrow(() -> new RuntimeException("Adoção não encontrada"));
         
-        adocao.setStatusAdocao(StatusAdocao.CANCELADA);
+        adocao.setStatusAdocao(StatusAdocao.EM_PROCESSO);
         adocao.setMotivoAdotante(motivoAdotante);
         
       

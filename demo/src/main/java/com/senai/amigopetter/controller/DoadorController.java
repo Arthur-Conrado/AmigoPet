@@ -66,7 +66,7 @@ public class DoadorController {
         }
     }
 
-    @GetMapping("/{id}/pets") // NOVO do documento
+    @GetMapping("/{id}/pets") 
     public ResponseEntity<List<ModelPet>> listarPetsDoDoador(@PathVariable Integer id) {
         List<ModelPet> pets = doadorService.listarPetsDoDoador(id);
         return ResponseEntity.ok(pets);

@@ -32,7 +32,7 @@ public class EspecieServiceImpl implements EspecieService {
     @Override
     public ModelEspecie salvar(ModelEspecie especie) {
       
-        if (especie.getNomeEspecie() != null && nomeExiste(especie.getNomeEspecie())) {
+        if (especie.getNome_especie() != null && nomeExiste(especie.getNome_especie())) {
             throw new RuntimeException("Espécie com este nome já existe");
         }
         
@@ -45,13 +45,13 @@ public class EspecieServiceImpl implements EspecieService {
             .orElseThrow(() -> new RuntimeException("Espécie não encontrada"));
         
        
-        if (especie.getNomeEspecie() != null && 
-            !especie.getNomeEspecie().equalsIgnoreCase(existente.getNomeEspecie()) && 
-            nomeExiste(especie.getNomeEspecie())) {
+        if (especie.getNome_especie() != null && 
+            !especie.getNome_especie().equalsIgnoreCase(existente.getNome_especie()) && 
+            nomeExiste(especie.getNome_especie())) {
             throw new RuntimeException("Espécie com este nome já existe");
         }
         
-        existente.setNomeEspecie(especie.getNomeEspecie());
+        existente.setNome_especie(especie.getNome_especie());
         
         return repositoryEspecie.save(existente);
     }

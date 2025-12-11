@@ -29,8 +29,8 @@ public class PetServiceImpl implements PetService {
     @Override
     public ModelPet salvar(ModelPet pet) {
         
-        if (pet.getDtRegistro() == null) {
-            pet.setDtRegistro(LocalDateTime.now());
+        if (pet.getDt_registro() == null) {
+            pet.setDt_registro(LocalDateTime.now());
         }
         
         return repositoryPet.save(pet);
@@ -50,7 +50,7 @@ public class PetServiceImpl implements PetService {
         existente.setDisponibilidade(pet.getDisponibilidade());
         existente.setCor(pet.getCor());
         existente.setVacinado(pet.getVacinado());
-        existente.setQtdDoses(pet.getQtdDoses());
+        existente.setQtd_doses(pet.getQtd_doses());
         existente.setCastrado(pet.getCastrado());
         existente.setDescricao(pet.getDescricao());
         existente.setEspecie(pet.getEspecie());
